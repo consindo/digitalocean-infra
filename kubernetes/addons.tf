@@ -1,0 +1,3 @@
+module "addons" {
+  source = "./addons"
+}
