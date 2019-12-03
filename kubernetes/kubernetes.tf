@@ -6,6 +6,8 @@ resource "digitalocean_kubernetes_cluster" "sfo2" {
   node_pool {
     name       = "memory-optimized"
     size       = "s-1vcpu-3gb"
-    node_count = 3
+    auto_scale = true
+    min_nodes  = 2
+    max_nodes  = 5
   }
 }
