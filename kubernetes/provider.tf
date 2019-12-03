@@ -7,6 +7,7 @@ provider "kubernetes" {
 }
 
 provider "helm" {
+  service_account = "tiller"
   kubernetes {
     host  = digitalocean_kubernetes_cluster.sfo2.endpoint
     token = digitalocean_kubernetes_cluster.sfo2.kube_config[0].token
