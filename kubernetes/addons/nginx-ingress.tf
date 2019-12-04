@@ -14,6 +14,19 @@ locals {
   nginx-ingress-values = <<EOT
 metrics:
   enabled: true
-  replicaCount: 2
+controller:
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 4
+    targetCPUUtilizationPercentage: 75
+    targetMemoryUtilizationPercentage: 85
+  resources:
+    requests:
+      cpu: 100m
+      memory: 100mi
+    limits:
+      cpu: 300m
+      memory: 300mi
   EOT
 }
