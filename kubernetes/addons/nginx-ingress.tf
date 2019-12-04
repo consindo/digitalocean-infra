@@ -24,9 +24,9 @@ controller:
   resources:
     requests:
       cpu: 100m
-      memory: 100mi
+      memory: 100Mi
     limits:
       cpu: 300m
-      memory: 300mi
+      memory: 300Mi
   EOT
 }
