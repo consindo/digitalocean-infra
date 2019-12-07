@@ -27,6 +27,22 @@ resource "kubernetes_deployment" "waka-mssql-test" {
       }
 
       spec {
+        security_context {
+          run_as_user = 1000
+          fs_group    = 2000
+        }
+
+        init_container: {
+          name    = "fix-permissions"
+          image   = "busybox"
+          command = ["/bin/chown","-R","1000", "/var/opt/mssql"]
+
+          volume_mount {
+            name       = kubernetes_persistent_volume_claim.waka-mssql-test.metadata.0.name
+            mount_path = "/var/opt/mssql"
+          }
+        }
+      
         container {
           image = "mcr.microsoft.com/mssql/server:2019-GA-ubuntu-16.04"
           name  = "mssql"
