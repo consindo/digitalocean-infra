@@ -32,7 +32,7 @@ resource "kubernetes_deployment" "waka-mssql-test" {
           fs_group    = 2000
         }
 
-        init_container: {
+        init_container {
           name    = "fix-permissions"
           image   = "busybox"
           command = ["/bin/chown","-R","1000", "/var/opt/mssql"]
