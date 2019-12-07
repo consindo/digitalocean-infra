@@ -9,6 +9,7 @@ resource "kubernetes_deployment" "waka-mssql-test" {
 
   spec {
     replicas = 1
+    strategy = "Recreate"
 
     selector {
       match_labels = {
@@ -29,9 +30,16 @@ resource "kubernetes_deployment" "waka-mssql-test" {
           name  = "mssql"
 
           env {
-            "ACCEPT_EULA" = "Y"
-            "SA_PASSWORD" = var.SA_PASSWORD_TEST
-            "MSSQL_PID" = "Express"
+            name  = "ACCEPT_EULA"
+            value = "Y"
+          }
+          env {
+            name  = "SA_PASSWORD"
+            value = var.SA_PASSWORD_TEST
+          }
+          env {
+            name  = "MSSQL_PID"
+            value = "Express"
           }
 
           resources {
