@@ -1,3 +1,7 @@
+locals {
+  mount_path = "/var/opt/mssql"
+}
+
 resource "kubernetes_deployment" "waka-mssql-test" {
   metadata {
     name      = "mssql"
@@ -30,11 +34,11 @@ resource "kubernetes_deployment" "waka-mssql-test" {
         init_container {
           name    = "fix-permissions"
           image   = "busybox"
-          command = ["/bin/chmod","-R","777", "/var/opt/mssql"]
+          command = ["/bin/chmod","-R","777", local.mount_path]
 
           volume_mount {
             name       = kubernetes_persistent_volume_claim.waka-mssql-test.metadata.0.name
-            mount_path = "/var/opt/mssql"
+            mount_path = local.mount_path
           }
         }
       
@@ -47,8 +51,13 @@ resource "kubernetes_deployment" "waka-mssql-test" {
             value = "Y"
           }
           env {
-            name  = "SA_PASSWORD"
-            value = var.SA_PASSWORD_TEST
+            name = "SA_PASSWORD"
+            value_from {
+              secret_key_ref {
+                name = kubernetes_secret.mssql.metadata.0.name
+                key  = "sa"
+              }
+            } 
           }
           env {
             name  = "MSSQL_PID"
@@ -68,7 +77,7 @@ resource "kubernetes_deployment" "waka-mssql-test" {
 
           volume_mount {
             name       = kubernetes_persistent_volume_claim.waka-mssql-test.metadata.0.name
-            mount_path = "/var/opt/mssql"
+            mount_path = local.mount_path
           }
         }
         volume {
