@@ -1,6 +1,6 @@
 resource "kubernetes_service" "waka-mssql-test" {
   metadata {
-    name = "waka-mssql-test"
+    name = "mssql"
   }
   spec {
     selector = {
