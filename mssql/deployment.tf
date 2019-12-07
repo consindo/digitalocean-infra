@@ -46,11 +46,11 @@ resource "kubernetes_deployment" "waka-mssql-test" {
 
           resources {
             limits {
-              cpu    = "2"
+              cpu    = "2000m"
               memory = "2500Mi"
             }
             requests {
-              cpu    = "1"
+              cpu    = "500m"
               memory = "1500Mi"
             }
           }
