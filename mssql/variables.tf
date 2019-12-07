@@ -1,4 +1,4 @@
 variable "SA_PASSWORD_TEST" {
-  type = "string"
+  type = string
   description = "Password for SA user on Test SQL Server"
 }

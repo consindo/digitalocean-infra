@@ -60,8 +60,11 @@ resource "kubernetes_deployment" "waka-mssql-test" {
             mount_path = "/var/opt/mssql"
           }
         }
-        persistent_volume_claim {
-          claim_name = kubernetes_persistent_volume_claim.waka-mssql-test.metadata.0.name
+        volume {
+          name = kubernetes_persistent_volume_claim.waka-mssql-test.metadata.0.name
+          persistent_volume_claim {
+            claim_name = kubernetes_persistent_volume_claim.waka-mssql-test.metadata.0.name
+          }
         }
       }
     }
