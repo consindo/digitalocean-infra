@@ -9,7 +9,9 @@ resource "kubernetes_deployment" "waka-mssql-test" {
 
   spec {
     replicas = 1
-    strategy = "Recreate"
+    strategy {
+      type = "Recreate"
+    }
 
     selector {
       match_labels = {
@@ -52,6 +54,14 @@ resource "kubernetes_deployment" "waka-mssql-test" {
               memory = "1500Mi"
             }
           }
+
+          volume_mount {
+            name       = kubernetes_persistent_volume_claim.waka-mssql-test.metadata.0.name
+            mount_path = "/var/opt/mssql"
+          }
+        }
+        persistent_volume_claim {
+          claim_name = kubernetes_persistent_volume_claim.waka-mssql-test.metadata.0.name
         }
       }
     }
