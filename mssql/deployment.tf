@@ -41,6 +41,11 @@ resource "kubernetes_deployment" "waka-mssql-test" {
             name       = kubernetes_persistent_volume_claim.waka-mssql-test.metadata.0.name
             mount_path = "/var/opt/mssql"
           }
+
+          security_context {
+            run_as_user = 0
+            fs_group    = 0
+          }
         }
       
         container {
