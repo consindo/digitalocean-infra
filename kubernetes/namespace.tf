@@ -9,3 +9,9 @@ resource "kubernetes_namespace" "waka_test" {
     name = "waka-test"
   }
 }
+
+resource "kubernetes_namespace" "jono_home" {
+  metadata {
+    name = "jono-home"
+  }
+}
