@@ -13,3 +13,19 @@ resource "kubernetes_persistent_volume_claim" "waka-mssql-test" {
     storage_class_name = "do-block-storage"
   }
 }
+
+resource "kubernetes_persistent_volume_claim" "waka-mssql-prod" {
+  metadata {
+    name      = "mssql"
+    namespace = "waka"
+  }
+  spec {
+    access_modes = ["ReadWriteOnce"]
+    resources {
+      requests = {
+        storage = "50Gi"
+      }
+    }
+    storage_class_name = "do-block-storage"
+  }
+}
