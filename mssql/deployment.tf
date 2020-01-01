@@ -12,7 +12,7 @@ resource "kubernetes_deployment" "waka-mssql-test" {
   }
 
   spec {
-    replicas = 1
+    replicas = 0
     strategy {
       type = "Recreate"
     }
