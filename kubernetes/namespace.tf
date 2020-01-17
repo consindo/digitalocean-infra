@@ -15,3 +15,9 @@ resource "kubernetes_namespace" "jono_home" {
     name = "jono-home"
   }
 }
+
+resource "kubernetes_namespace" "everylotbot" {
+  metadata {
+    name = "everylotbot"
+  }
+}
