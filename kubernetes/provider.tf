@@ -7,6 +7,7 @@ provider "kubernetes" {
 }
 
 provider "helm" {
+  version = "= 0.10.4"
   service_account = kubernetes_service_account.tiller.metadata[0].name
   kubernetes {
     host  = digitalocean_kubernetes_cluster.sfo2.endpoint
