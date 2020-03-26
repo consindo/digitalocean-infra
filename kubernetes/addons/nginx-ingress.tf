@@ -22,7 +22,7 @@ controller:
     targetCPUUtilizationPercentage: 75
     targetMemoryUtilizationPercentage: 85
   config:
-    use-proxy-protocol: true
+    use-proxy-protocol: "true"
   service:
     annotations:
       service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
