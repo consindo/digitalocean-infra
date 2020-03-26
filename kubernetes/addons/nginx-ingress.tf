@@ -21,6 +21,11 @@ controller:
     maxReplicas: 4
     targetCPUUtilizationPercentage: 75
     targetMemoryUtilizationPercentage: 85
+  config:
+    use-proxy-protocol: true
+  service:
+    annotations:
+      service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
   resources:
     requests:
       cpu: 100m
