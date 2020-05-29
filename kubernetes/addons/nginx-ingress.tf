@@ -33,5 +33,7 @@ controller:
     limits:
       cpu: 300m
       memory: 300Mi
+udp:
+  3478: "jono-home/unifi:stun"
   EOT
 }
