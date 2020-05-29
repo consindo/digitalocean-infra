@@ -3,7 +3,11 @@ resource "helm_release" "unifi" {
   namespace  = "jono-home"
   repository = data.helm_repository.stable.metadata[0].name
   chart      = "unifi"
-  version    = "0.5.2"
+  version    = "0.8.1"
+  
+  values = [
+    local.unifi-values
+  ]
 }
 
 resource "kubernetes_ingress" "unifi-controller" {
@@ -30,3 +34,11 @@ resource "kubernetes_ingress" "unifi-controller" {
     }
   }
 }
+
+locals {
+  unifi-values = <<EOT
+unifiedService:
+  enabled: true
+EOT
+}
+
