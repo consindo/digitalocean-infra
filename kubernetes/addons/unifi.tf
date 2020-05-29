@@ -25,8 +25,8 @@ resource "kubernetes_ingress" "unifi-controller" {
       http {
         path {
           backend {
-            service_name = "unifi-controller"
-            service_port = "8080"
+            service_name = "unifi"
+            service_port = "controller"
           }
           path = "/"
         }
