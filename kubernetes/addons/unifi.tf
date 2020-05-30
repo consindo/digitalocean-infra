@@ -37,6 +37,8 @@ resource "kubernetes_ingress" "unifi-controller" {
 
 locals {
   unifi-values = <<EOT
+image:
+  tag: 5.12.72
 unifiedService:
   enabled: true
 EOT
