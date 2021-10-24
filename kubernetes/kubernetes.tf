@@ -1,7 +1,7 @@
 resource "digitalocean_kubernetes_cluster" "sfo2" {
   name    = "sfo2-prod"
   region  = "sfo2"
-  version = "1.16.15-do.4"
+  version = "1.19.13-do.0"
 
   node_pool {
     name       = "general-purpose"
